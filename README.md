@@ -95,6 +95,11 @@ __[CLI Documentation](cmd/migrate)__
 $ migrate -source file://path/to/migrations -database postgres://localhost:5432/database up 2
 ```
 
+### Create migration called add_users
+```bash
+$ migrate create -ext sql -dir db/migration -seq add_users
+```
+
 ### Docker usage
 
 ```bash
