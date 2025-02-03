@@ -29,7 +29,7 @@ vendor/
 vendor/
 
 # Environment variables
-.env
+*.env
 
 # Go build cache
 *.cache
