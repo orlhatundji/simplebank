@@ -33,7 +33,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
-
+          
+      - name: Update kubeconfig
+        run: aws eks --region eu-north-1 update-kubeconfig --name simple-bank
+      
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
@@ -50,8 +53,6 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           docker push $REGISTRY/$REPOSITORY
       
-      - name: Update kubeconfig
-        run: aws eks --region eu-north-1 update-kubeconfig --name simple-bank
       
       - name: Deploy image to Amazon EKS
         run: |
